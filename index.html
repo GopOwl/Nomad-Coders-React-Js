@@ -8,22 +8,26 @@
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
 <script type="text/babel">
-    function Btn({banana, big}) {
+    function Btn({ text, onClick }) {
         return (
-            <button style={{
-            backgroundColor : 'tomato',
-            clolr : 'white',
-            padding : '10px 20px',
-            border : 0,
-            borderRadius : 10,
-            fontSize: big ? 18 : 16
-        }}>{banana}</button>);
+                <button
+                    onClick={onClick}
+                    style={{
+                        backgroundColor: 'tomato',
+                        clolr: 'white',
+                        padding: '10px 20px',
+                        border: 0,
+                        borderRadius: 10,
+                    }}>{text}</button>
+        );
     }
     function App() {
+        const [value, setValue] = React.useState("Save Changes");
+        const changeValue = () => setValue('Revert Changes')
         return (
             <div>
-                <Btn banana="Save Changes" big={true}/> {/* Btn({banana:"Save Changes}) 와 같은 표현임  */}
-                <Btn banana="Continue" big={false}/>
+                <Btn text={value} onClick={changeValue} /> {/* Btn({text:"Save Changes}) 와 같은 표현임  */}
+                <Btn text="Continue" />
             </div>
         );
     }
